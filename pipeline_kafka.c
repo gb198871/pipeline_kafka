@@ -1214,7 +1214,7 @@ configure_consumer(rd_kafka_conf_t *conf, rd_kafka_topic_conf_t *topic_conf)
 
 	Assert(consumer_config);
 
-	if (!SplitIdentifierString(consumer_config, ',', &opts))
+	if (!SplitDirectoriesString(consumer_config, ',', &opts))
 		elog(ERROR, "failed to parse pipeline_kafka.consumer_config");
 
 	foreach(lc, opts)
@@ -1224,7 +1224,7 @@ configure_consumer(rd_kafka_conf_t *conf, rd_kafka_topic_conf_t *topic_conf)
 		char *k;
 		char *v;
 
-		if (!SplitIdentifierString(kv, '=', &pair))
+		if (!SplitDirectoriesString(kv, '=', &pair))
 		{
 			elog(WARNING, "malformed configuration key-value pair: %s, ignoring", kv);
 			continue;
